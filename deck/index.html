@@ -1,0 +1,620 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Accessibility 101</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="../node_modules/shower-ribbon/styles/screen.css">
+</head>
+<body class="list">
+
+  <style>
+    .slide.bg {
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    .cover h2 {
+      color:#fff;
+      font-size:70px;
+      margin: 0;
+    }
+    .cover p {
+      color:#fff;
+      margin:10px 0 0;
+      font-style:italic;
+      font-size:20px;
+    }
+    .cover *, .cover code {
+      color:#fff;
+    }
+
+    .cover code {
+      background: rgba(255,255,255,.25);
+      padding: .2em;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .slide h3 {
+      font-weight: 600;
+      font-size: 140%;
+    }
+    .slide .smaller,
+    .slide p.smaller {
+      font-size: 80%;
+    }
+    .slide.x2 {
+      font-size: 200%;
+    }
+    .slide.x3 {
+      font-size: 300%;
+    }
+    .slide p {
+      font-size: 1em;
+    }
+  </style>
+
+  <header class="caption">
+    <h1>Accessibility 101</h1>
+    <p>Dylan Smith &lt;dylansmith@gmail.com&gt;</p>
+  </header>
+
+  <section class="slide cover bg" style="background-image:url('img/stock/traffic-light-tree.jpg')">
+    <div>
+      <h2>Accessibility 101</h2>
+      <p>Dylan Smith &lt;dylansmith@gmail.com&gt;</p>
+    </div>
+  </section>
+
+  <section class="slide"><div>
+    <h2>I'm going to talk about:</h2>
+    <ol>
+      <li>The types of disability (and some stats)</li>
+      <li>Why we should bother/care</li>
+      <li>Some specs and standards (as briefly as possible)</li>
+      <li>How to build and test for accessibility</li>
+      <li>Using a screenreader</li>
+      <li>Some code</li>
+    </ol>
+    <p class="note">Many reaction gifs have been harmed in the making of this presentation.</p>
+  </div></section>
+
+  <section class="slide cover x2"><div>
+    <p>i18n = internationalisation</p>
+    <p>l10n = localisation</p>
+    <p>a11y = accessibility</p>
+  </div></section>
+
+  <section class="slide x2"><div>
+    <figure>
+      <blockquote>
+        <p>Blind people don't *really* use computers that much.</p>
+      </blockquote>
+      <figcaption>
+        Some guy I worked for once.
+        <div class="next">Once.</div>
+      </figcaption>
+    </figure>
+  </div></section>
+
+  <section class="slide x2"><div>
+    <figure>
+      <blockquote>
+        <p>I'm sure screen-readers take care of most of that.</p>
+      </blockquote>
+      <figcaption>Budget-conscious client.</figcaption>
+    </figure>
+  </div></section>
+
+  <section class="slide x2"><div>
+    <figure>
+      <blockquote> </blockquote>
+      <figcaption>Most developers&hellip;</figcaption>
+    </figure>
+  </div></section>
+
+  <section class="slide shout">
+    <img src="img/reaction/notime.jpg" style="width:100%;position:absolute;top:-50px;"/>
+  </section>
+
+  <section class="slide cover"><div>
+    <h2>Types of disabilities</h2>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Types of disability: Visual</h2>
+    <ul>
+      <li>Blindness, low vision (cataract, glaucoma), colour blindness</li>
+      <li>Seizures triggered by flashing/flickering images</li>
+      <li>246 million people have low vision, 39 million are blind (2012)</li>
+      <li><strong>Assistive technologies:</strong> screen readers, high contrast, screen magnifiers, text zoom</li>
+      <li><strong>Developers:</strong> ensure your markup is semantic, accessible and you have text alternatives for visual media</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Colour blindness</h2>
+    <p>Protanopia: reduced sensitivity to red light</p>
+    <div>
+      <img src="img/slide-colourblindness/normal.jpg">
+      <img src="img/slide-colourblindness/protanopia.jpg">
+    </div>
+    <p class="note">
+      <a href="http://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/">Types of colour blindness</a>
+    </p>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Colour blindness</h2>
+    <p>Deuteranopia: reduced sensitivity to green light</p>
+    <div>
+      <img src="img/slide-colourblindness/normal.jpg">
+      <img src="img/slide-colourblindness/deuteranopia.jpg">
+    </div>
+    <p class="note">
+      <a href="http://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/">Types of colour blindness</a>
+    </p>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Colour blindness</h2>
+    <p>Tritanopia: reduced sensitivity to blue light (rare: 1:30-50k)</p>
+    <div>
+      <img src="img/slide-colourblindness/normal.jpg">
+      <img src="img/slide-colourblindness/tritanopia.jpg">
+    </div>
+    <p class="note">
+      <a href="http://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/">Types of colour blindness</a>
+    </p>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Colour blindness</h2>
+    <p>Monochromacy/Achromatopsia: greyscale (very rare - 1:33k)</p>
+    <div>
+      <img src="img/slide-colourblindness/normal.jpg">
+      <img src="img/slide-colourblindness/monochromacy.jpg">
+    </div>
+    <p class="note">
+      <a href="http://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/">Types of colour blindness</a>
+    </p>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Colour blindness</h2>
+    <div style="display:inline-block;width:480px;vertical-align:top;">
+      <img src="img/slide-colourblindness/bootstrap-buttons.png">
+      <img src="img/slide-colourblindness/bootstrap-buttons_protanopia.jpg">
+      <br><br>
+      <img src="img/slide-colourblindness/google.jpg">
+    </div>
+    <div style="display:inline-block;width:290px;text-align:right">
+      <img src="img/slide-colourblindness/tfl.jpg">
+    </div>
+  </div></section>
+
+  <section class="slide bg"
+    style="background-image:url(img/slide-colour-meaning/colours-in-culture.png)">
+  </section>
+
+  <section class="slide"><div>
+    <img src="img/slide-colour-meaning/colour-assoc-1.png">
+  </div></section>
+
+  <section class="slide"><div>
+    <img src="img/slide-colour-meaning/colour-assoc-2.png">
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Types of disability: Auditory</h2>
+    <ul>
+      <li>Partial or total lack of hearing</li>
+      <li>360 million people worldwide have disabling hearing loss</li>
+      <li>Increasingly important with the growth of video online (subtitles)</li>
+      <li><strong>Assistive technologies:</strong> subtitles, sign language (PIP), transcripts, closed captioning, induction loop</li>
+      <li><strong>Developers:</strong> very simple to provide transcripts of audio content</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Types of disability: Motor</h2>
+    <ul>
+      <li>Partial or total lack of motor control</li>
+      <li>e.g.: parapreglia, quadruplegia, cerebral palsy, muscular dystrophy, multiple sclerosis, arthritis, motor neuron disease</li>
+      <li><strong>Assistive technologies:</strong> mouth stick, head wand, single-switch access, sip and puff switch, oversized trackball mouse
+        adaptive keyboard, eye tracking, voice recognition software</li>
+      <li><strong>Developers:</strong> consider size of UI elements, complex interactions requiring particular dexterity, and time-based interactions</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Types of disability: Cognitive</h2>
+    <ul>
+      <li>Complex array of information processing challenges</li>
+      <li>e.g.: autism, Downs Syndrome, ADD, dyslexia</li>
+      <li>Stats are hard to come by due to varied conditions and diagnoses</li>
+      <li>Think functional rather than clinical: "how does it impact the user?"</li>
+      <li>Attention, memory, problem-solving, comprehension (visual, linguistic, numeric)</li>
+      <li><strong>Developers:</strong> considerations are many and equally complex</li>
+    </ul>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>Why should we care anyway?</h2>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>The carrot</h2>
+    <img src="img/slide-whycare/carrot.jpg" height="400">
+  </div></section>
+
+  <section class="slide"><div>
+    <figure>
+      <iframe width="780" height="438" src="https://www.youtube.com/embed/xATIyq3uZM4?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </figure>
+  </div>
+  </section>
+
+  <section class="slide"><div>
+    <figure>
+      <iframe src="http://player.vimeo.com/video/44012785?title=0&amp;byline=0&amp;portrait=0" width="780" height="438" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </figure>
+  <div></section>
+
+  <section class="slide"><div>
+    <h2>It's the right thing to do</h2>
+    <ul>
+      <li>Not being accessible is indefensible from an ethical and
+        <abbr title="Corporate Social Responsibility">CSR</abbr> perspective</li>
+      <li>Commercial benefits too:
+        <ul>
+          <li>improves SEO &amp; general usability</li>
+          <li>access to more customers</li>
+          <li>goodwill leads to customer loyalty</li>
+          <li>a11y is a differentiator and a <abbr title="Unique Selling Proposition">USP</abbr> for companies like Apple</li>
+        </ul>
+      </li>
+    </ul>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>1 billion people (15%) of the global population is disabled.</h2>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>110-190 million adults have very significant challenges.</h2>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>All of this made more important by an aging and increasingly unhealthy population&hellip;</h2>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>The stick</h2>
+    <img src="img/slide-whycare/stick.jpg" height="400">
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>It's the law</h2>
+    <ul>
+      <li><strong>UK's Equality Act (2010)</strong> makes it illegal to discriminate against people with disabilities</li>
+      <li>Usually, companies are sued by bodies such as the <abbr title="Royal National Institute for the Blind">RNIB</abbr></li>
+      <li><strong>Section 508</strong> takes a procurement legality approach</li>
+      <li>Many governments have comparable legislation</li>
+      <li><strong>Adverse media is a powerful motivating factor</strong></li>
+    </ul>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>Specs and standards</h2>
+  </div></section>
+
+  <section class="slide"><div>
+    <p style="padding:1em 0"><img src="img/slide-specs/wcag-wtf.png"></p>
+  </div></section>
+
+  <section class="slide shout"><div>
+    <img src="img/reaction/shakehead.gif">
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>Here's a quick summary<br>of that then...</h2>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WCAG2: Overview</h2>
+    <ul>
+      <li>Published and maintained by the W3C's Web Accessibility Initiative (WAI)</li>
+      <li>The "web standards" of a11y</li>
+      <li>Defines requirements in terms of:
+        <ul>
+          <li>4 <em>principles</em> (POUR): <strong>perceivable</strong>, <strong>operable</strong>,
+            <strong>understandable</strong>, <strong>robust</strong></li>
+          <li>containing 12 <em>guidelines</em></li>
+          <li>with 61 <em>success criteria</em>, graded A, AA or AAA</li>
+        </ul>
+      </li>
+      <li>If a site meets all AA success criteria, then it's overall compliance is AA</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WCAG2: Perceivable</h2>
+    <ul>
+      <li>Provide <strong>text alternatives</strong> for non-text content.</li>
+      <li>Provide <strong>captions and other alternatives</strong> for multimedia.</li>
+      <li>Create content that can be <strong>presented in different ways</strong>,
+        including by assistive technologies, without losing meaning.</li>
+      <li>Make it easier for users to <strong>see and hear</strong> content.</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WCAG2: Operable</h2>
+    <ul>
+      <li>Make all functionality available from a <strong>keyboard</strong>.</li>
+      <li>Give users <strong>enough time</strong> to read and use content.</li>
+      <li>Do not use content that causes <strong>seizures</strong>.</li>
+      <li>Help users <strong>navigate and find</strong> content.</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WCAG2: Understandable</h2>
+    <ul>
+      <li>Make text <strong>readable and understandable</strong>.</li>
+      <li>Make content appear and operate in <strong>predictable</strong> ways.</li>
+      <li>Help users <strong>avoid and correct mistakes</strong>.</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WCAG2: Robust</h2>
+    <ul>
+      <li>Maximize <strong>compatibility</strong> with current and future user tools.</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WCAG2: whose job is it?</h2>
+    <img src="img/slide-specs/wcag-roles.png">
+    <p class="note smaller">
+      <a href="http://www.w3.org/community/wai-engage/wiki/Accessibility_Responsibility_Breakdown">
+        http://www.w3.org/community/wai-engage/wiki/Accessibility_Responsibility_Breakdown
+      </a>
+    </p>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>Ok, that's not <i>so</i> bad...</h2>
+  </div></section>
+
+  <section class="slide shout"><div>
+    <img src="img/slide-specs/section508.jpg">
+  </div></section>
+
+  <section class="slide shout"><div>
+    <img src="img/reaction/sigh.gif">
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Section 508</h2>
+    <ul>
+      <li>Section 508 Amendment to the Rehabilitation Act of 1973</li>
+      <li>A US law requiring federal agencies and any website contracted to or receiving funds
+      from them to make their content and features accessible to the disabled</li>
+      <li>Legal and technical compliance frameworks</li>
+      <li>Revised in 1998 and is 7 years overdue on approval to bring it in-line with WCAG</li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>BS 8878</h2>
+    <ul>
+      <li>"Web Accessibility - Code of practice BS 8878"</li>
+      <li>an incredibly catchy name for a web accessibility implementation framework by the
+        <abbr title="British Standards Institute">BSi</abbr>
+      </li>
+      <li>outlines how business should develop accessible web products</li>
+      <li>focusses on process as much as product/code</li>
+    </ul>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>But wait, there's more!</h2>
+  </div></section>
+
+  <section class="slide shout"><div>
+    <img src="img/reaction/who-cry.gif">
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>WAI-ARIA 1.0 (not "Why ARIA?!")</h2>
+    <ul>
+      <li>ARIA = Accessible Rich Internet Applications</li>
+      <li>Gives developers a means of attaching additional semantics to HTML elements</li>
+      <li>As a developer, this is your friend (more later)</li>
+    </ul>
+  </div></section>
+
+  <section class="slide cover"><div>
+    <h2>How to build for accessibility</h2>
+  </div></section>
+
+  <section class="slide cover" style="background-color:#2C2442"><div>
+    <h2>Step 1: Semantics</h2>
+    <div class="next">
+      <p>Clean, semantic markup is good for everyone!</p>
+      <h3>Checklist</h3>
+      <ul>
+        <li>Avoid "div-itis" &amp; use appropriate HTML5 semantic elements</li>
+        <li>Get rid of deprecated elements</li>
+        <li>Headings should be correctly nested and have computed text content</li>
+        <li>Tables are for tabular <em>data</em> (&hellip; but you know this)</li>
+        <li>Lists must have child list items</li>
+        <li>Ensure the <code>&lt;html lang&gt;</code> attribute is set</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="slide cover" style="background-color:#2E452D"><div>
+    <h2>Step 2: Navigation</h2>
+    <div class="next">
+      <p>Are you making it easy for people to navigate in a non-linear manner?</p>
+      <h3>Checklist</h3>
+      <ul>
+        <li>Links must have meaningful computed text, not "click here"</li>
+        <li>Use the <code>&lt;nav&gt;</code> element with <code>aria-label</code></li>
+        <li>Add <code>role="main"</code> to your primary content container only</li>
+        <li>Add other landmark roles to key components, e.g. <code>search</code></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="slide cover" style="background-color:#25333D"><div>
+    <h2>Step 3: Media</h2>
+    <div class="next">
+      <p>Is your content still complete and understandable without images/media?</p>
+      <h3>Checklist</h3>
+      <ul>
+        <li>Ensure content images have meaningful alt text</li>
+        <li>Decorative images ("furniture") should be in CSS or have <code>alt=""</code></li>
+        <li>Images inside links &amp; headings can have empty alt text if their parent has text content</li>
+        <li>Provide transcripts/subtitles/closed captioning for video &amp; audio</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="slide cover" style="background-color:#66070A"><div>
+    <h2>Step 4: Design</h2>
+    <div class="next">
+      <p>Keep it simple, clean and flexible.</p>
+      <h3>Checklist</h3>
+      <ul>
+        <li>Avoid "traffic light" metaphors and relying solely on visual language</li>
+        <li>Check that there is enough contrast in your design</li>
+        <li>Avoid justified text alignment</li>
+        <li>Use <code>em</code> or <code>rem</code> for layout so that it expands with text zoom (layout should still cope at 300%)</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="slide cover" style="background-color:#3E1D42"><div>
+    <h2>Step 5: Get rid of the mouse</h2>
+    <div class="next">
+      <p>Can you navigate the content easily with your keyboard alone?</p>
+      <h3>Checklist</h3>
+      <ul>
+        <li>No element should have a <code>tabindex</code> greater than 0</li>
+        <li>Do not remove focus outlines</li>
+        <li>Use <code>tabindex="-1"</code> to enable scriptable focus for non-focusable elements, but only
+        direct focus when it makes things easier</li>
+        <li>Avoid (badly written) custom components</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="slide cover" style="background-color:#624C41"><div>
+    <h2>Step 6: Test all the things</h2>
+    <div class="next">
+      <p>Can humans and non-humans understand your code?</p>
+      <h3>Checklist</h3>
+      <ul>
+        <li>Missing closing tags can confuse screen readers</li>
+        <li>Your output should be valid HTML5</li>
+        <li>Use an automated a11y testing tool, e.g. <a href="http://www.tenon.io/">tenon.io</a></li>
+        <li>Learn how to use a screen reader, and actually use it<br>
+          (bonus credit: turn your screen off)
+        </li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Resources</h2>
+    <ul class="smaller">
+      <li>W3C: <a href="http://www.w3.org/WAI/intro/wcag">Web Content Accessibility Guidelines (WCAG) Overview</a></li>
+      <li>W3C: <a href="http://www.w3.org/TR/WCAG20/">Web Content Accessibility Guidelines (WCAG) 2.0</a>
+      <li>W3C: <a href="http://www.w3.org/WAI/WCAG20/quickref/">How to Meet WCAG 2.0 (customisable quick reference)</a></li>
+      <li>W3C: <a href="http://www.w3.org/community/wai-engage/wiki/Accessibility_Responsibility_Breakdown">Accessibility
+        Responsibility Breakdown</a></li>
+      <li>GOV.UK: <a href="https://www.gov.uk/service-manual/user-centred-design/accessibility">How to make services
+        that everyone can use</a></li>
+      <li>Organisations:
+        <a href="http://webaim.org/">WebAIM</a>,
+        <a href="http://www.abilitynet.org.uk">AbilityNet UK</a>,
+        <a href="http://www.rnib.org.uk/"><abbr title="Royal National Institute for the Blind">RNIB</abbr></a>
+      </li>
+      <li>Article: <a href="https://www.govloop.com/community/blog/5-ways-prepare-section-508-refresh/">5 ways
+        to prepare for the Section 508 refresh</a></li>
+      <li>REST API for accessibility validation: <a href="http://www.tenon.io/">tenon.io</a></li>
+      <li>Contrast checkers:
+        <a href="http://webaim.org/resources/contrastchecker/">WebAIM</a>,
+        <a href="http://snook.ca/technical/colour_contrast/colour.html#fg=33FF33,bg=333333">Snook.ca</a>
+      </li>
+    </ul>
+  </div></section>
+
+  <section class="slide"><div>
+    <h2>Code Samples</h2>
+    <pre>
+      <code>&lt;!DOCTYPE html&gt;</code>
+      <code>&lt;html lang="en"&gt;</code>
+      <code><mark>&lt;head&gt;</mark> <mark class="comment">&lt;!--Comment--&gt;</mark></code>
+      <code>    &lt;title&gt;Shower&lt;/title&gt;</code>
+      <code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
+      <code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
+      <code><mark>&lt;/head&gt;</mark></code>
+    </pre>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Even Tables</h2>
+    <table>
+    <tr>
+      <th scope="col">Locavore</th>
+      <th>Umami</th>
+      <th>Helvetica</th>
+      <th>Vegan</th>
+    </tr>
+    <tr>
+      <th scope="row">Fingerstache</th>
+      <td>Kale</td>
+      <td>Chips</td>
+      <td>Keytar</td>
+    </tr>
+    <tr>
+      <th scope="row">Sriracha</th>
+      <td>Gluten-free</td>
+      <td>Ennui</td>
+      <td>Keffiyeh</td>
+    </tr>
+    <tr>
+      <th scope="row">Thundercats</th>
+      <td>Jean</td>
+      <td>Shorts</td>
+      <td>Biodiesel</td>
+    </tr>
+    <tr>
+      <th scope="row">Terry</th>
+      <td>Richardson</td>
+      <td>Swag</td>
+      <td>Blog</td>
+    </tr>
+    </table>
+    <p>It’s good to have information organized.</p>
+  </div></section>
+
+
+
+  <!--
+    To hide progress bar from entire presentation
+    just remove “progress” element.
+    -->
+  <div class="progress"><div></div></div>
+  <script src="../node_modules/shower-core/shower.min.js"></script>
+</body>
+</html>
